@@ -1,0 +1,40 @@
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+/*
+  Standards that can be overwritten in the settings tab.
+*/
+* {
+  /* Fonts. */
+  font-size: 12px;
+  font: Helvetica;
+  color: #ffffff;
+}
+
+body {
+  background: #000000;
+}
+
+/*
+  Grid classes.
+*/
+.grid {
+  /* All grids will have this base class.
+   * A grid is required to also have a position class.
+    - A left and top position is also required, as well as a width and top. */
+}
+
+.grid-absolute {
+  position: absolute;
+}
+
+.grid-fixed {
+  position: fixed;
+}
+
+.grid-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}

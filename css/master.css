@@ -1,3 +1,7 @@
+* {
+  color: #ffffff;
+}
+
 body {
   padding: 0px;
   margin: 0px;
@@ -7,10 +11,8 @@ body {
   Standards that can be overwritten in the settings tab.
 */
 * {
-  /* Fonts. */
-  font-size: 12px;
-  font: Helvetica;
-  color: #ffffff;
+  font-family: Helvetica, Arial;
+  font-size: 18px;
 }
 
 body {
@@ -24,6 +26,7 @@ body {
   /* All grids will have this base class.
    * A grid is required to also have a position class.
     - A left and top position is also required, as well as a width and top. */
+  padding: 10px;
 }
 
 .grid-absolute {
@@ -37,4 +40,20 @@ body {
 .grid-sticky {
   position: -webkit-sticky;
   position: sticky;
+}
+
+/*
+  Widget classes.
+*/
+.widget {
+  /* All widgets will have this base class. */
+  width: 100%;
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-radius: 5px;
+  border: 1px solid #1a1a1a;
+}
+
+.widget:not(:last-child) {
+  margin-bottom: 5px;
 }

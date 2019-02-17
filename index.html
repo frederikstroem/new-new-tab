@@ -6,19 +6,45 @@
     <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
-    <div class="grid grid-absolute" style="width: 500px;">
-      <div class="widget">
-        Test widget 1.
+    <!-- Grids and widgets is added to main. -->
+    <main>
+      <div class="grid grid-absolute" style="width: 500px;">
+        <div class="widget">
+          Test widget 1.
+        </div>
+        <div class="widget">
+          Test widget 2.
+        </div>
       </div>
-      <div class="widget">
-        Test widget 2.
-      </div>
-    </div>
+    </main>
 
     <div id="settingsPopupOverlay"></div>
     <div id="settingsPopup">
         <h1>Settings</h1>
-        <p>Sed congue pulvinar lobortis. Nulla in iaculis est, eu viverra lectus. Proin sit amet sagittis ante. Maecenas a sollicitudin diam, nec molestie urna. Ut nec lorem a erat vestibulum finibus. Pellentesque tincidunt porttitor quam, ut hendrerit ex bibendum eu. Vestibulum bibendum mauris nisl, sit amet molestie eros suscipit ac. Mauris tempor, metus ut sollicitudin varius, tortor nulla posuere ligula, sit amet consectetur est turpis sed odio. Phasellus sed iaculis felis, at aliquet orci. Duis quis massa a mauris porttitor facilisis non non nisi. Integer erat purus, tempor a placerat non, elementum a urna. Donec volutpat semper justo vel ultrices. Praesent pulvinar iaculis mi, ac interdum nulla placerat id. Etiam blandit dictum felis at imperdiet.</p>
+        <!-- Settings is added to settings div. -->
+        <div id="settings">
+          <div class="settingsGrid">
+            <h2>Grid 1</h2>
+            <div class="settingsWidget">
+              Widget 1
+            </div>
+            <div class="settingsWidget">
+              Widget 2
+            </div>
+            <a href="javascript:void(0)" class="settingsAddWidget">Add new widget</a>
+          </div>
+          <div class="settingsGrid">
+            <h2>Grid 2</h2>
+            <div class="settingsWidget">
+              Widget 1
+            </div>
+            <a href="javascript:void(0)" class="settingsAddWidget">Add new widget</a>
+          </div>
+        </div>
+        <a href="javascript:void(0)" id="settingsAddGrid">Add new grid</a><br><br>
+        <a href="javascript:void(0)" id="settingsOk">Ok</a>
+        <a href="javascript:void(0)" id="settingsCancel">Cancel</a>
+        <a href="javascript:void(0)" id="settingsApply">Apply</a>
     </div>
 
     <script type="text/javascript" src="js/widgets.js"></script>

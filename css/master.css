@@ -29,7 +29,6 @@ body {
 /*
   Settings popup.
 */
-
 #settingsPopupOverlay {
   display: none;
   position: fixed;
@@ -55,6 +54,10 @@ body {
   max-width: 100%;
   overflow: auto;
   max-height: 100%;
+}
+
+#settings {
+  margin-bottom: 30px;
 }
 
 /*

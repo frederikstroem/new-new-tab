@@ -2,6 +2,10 @@
   color: #ffffff;
 }
 
+select, option, input {
+  color: #000000;
+}
+
 body {
   padding: 0px;
   margin: 0px;
@@ -54,10 +58,6 @@ body {
   max-width: 100%;
   overflow: auto;
   max-height: 100%;
-}
-
-#settings {
-  margin-bottom: 30px;
 }
 
 /*

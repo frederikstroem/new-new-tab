@@ -8,40 +8,37 @@
   <body>
     <!-- Grids and widgets is added to main. -->
     <main>
-      <div class="grid grid-absolute" style="width: 500px;">
-        <div class="widget">
-          Test widget 1.
-        </div>
-        <div class="widget">
-          Test widget 2.
-        </div>
-      </div>
+
     </main>
 
     <div id="settingsPopupOverlay"></div>
     <div id="settingsPopup">
         <h1>Settings</h1>
-        <!-- Settings is added to settings div. -->
-        <div id="settings">
-          <div class="settingsGrid">
-            <h2>Grid 1</h2>
-            <div class="settingsWidget">
-              Widget 1
-            </div>
-            <div class="settingsWidget">
-              Widget 2
-            </div>
-            <a href="javascript:void(0)" class="settingsAddWidget">Add new widget</a>
-          </div>
-          <div class="settingsGrid">
-            <h2>Grid 2</h2>
-            <div class="settingsWidget">
-              Widget 1
-            </div>
-            <a href="javascript:void(0)" class="settingsAddWidget">Add new widget</a>
-          </div>
+        Choose a grid to edit:
+        <select id="settingsChooseGrid">
+          <option value="">Grid:</option>
+        </select>
+        <div id="settingsGrid">
+          Grid position:
+          <select id="settingsGridPosition">
+            <option value="">Position:</option>
+            <option value="absolute">Absolute</option>
+            <option value="fixed">Fixed</option>
+            <option value="sticky">Sticky</option>
+          </select>
+          <br>
+          Top (px):
+          <input id="settingsGridTop" type="number" value="">
+          <br>
+          Left (px):
+          <input id="settingsGridLeft" type="number" value="">
         </div>
-        <a href="javascript:void(0)" id="settingsAddGrid">Add new grid</a><br><br>
+        <div id="settingsGridWidgetList">
+
+        </div>
+        <a href="javascript:void(0)" id="settingsAddGrid">Add new widget</a>
+        <a href="javascript:void(0)" id="settingsAddGrid">Add new grid</a>
+        <br><br>
         <a href="javascript:void(0)" id="settingsOk">Ok</a>
         <a href="javascript:void(0)" id="settingsCancel">Cancel</a>
         <a href="javascript:void(0)" id="settingsApply">Apply</a>

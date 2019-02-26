@@ -10,6 +10,10 @@ var widgets = [
     Static text widget.
   */
   function () {
+    this.getId = function () {
+      return "staticText";
+    }
+
     this.getName = function () {
       return "Static text";
     }
@@ -25,12 +29,14 @@ var widgets = [
     this.getSettings = function () {
       return [
         {
+          id:"text",
           name:"Text",
           description:"Text to display.",
           type:"string",
           required:true
         },
         {
+          id:"fontSize",
           name:"Font size (px)",
           description:"Font size in pixels.",
           type:"number",
@@ -40,8 +46,11 @@ var widgets = [
       ];
     }
 
-    this.displayWidget = function (widgetId) {
-
+    this.displayWidget = function (widgetElement, widgetSettings) {
+      widgetElement.classList.add(this.getId());
+      widgetElement.innerHTML = `
+        <span style="font-size: ` + widgetSettings["fontSize"] + `px;">` + widgetSettings["text"] + `</span>
+      `;
     }
   }
 

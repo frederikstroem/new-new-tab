@@ -39,6 +39,7 @@ function setSettings (settings) {
 /*
   Settings popup.
 */
+// Show and hide settings popup.
 settingsPanelHidden = true;
 function toggleSettingsPopup () {
   if (settingsPanelHidden) {
@@ -51,6 +52,9 @@ function toggleSettingsPopup () {
 
   settingsPanelHidden = !settingsPanelHidden;
 }
+
+// Choose grid menu.
+// TODO
 
 /*
   Key listeners.

@@ -54,7 +54,23 @@ function toggleSettingsPopup () {
 }
 
 // Choose grid menu.
-// TODO
+function updateGridMenu() {
+  var settings = getSettings();
+  var settingsChooseGrid = document.getElementById("settingsChooseGrid");
+  // Clear grid menu (expect first child).
+  while (settingsChooseGrid.childElementCount > 1) {
+    settingsChooseGrid.removeChild(settingsChooseGrid.lastChild);
+  }
+  // Add options.
+  for (var i = 0; i < settings["grids"].length; i++) {
+    var option = document.createElement("option");
+    option.text = i + 1;
+    option.value = i + 1;
+    settingsChooseGrid.add(option);
+  }
+}
+// Init run.
+updateGridMenu();
 
 /*
   Key listeners.

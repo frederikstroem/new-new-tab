@@ -48,9 +48,9 @@ var widgets = [
 
     this.displayWidget = function (widgetElement, widgetSettings) {
       widgetElement.classList.add(this.getId());
-      widgetElement.innerHTML = `
-        <span style="font-size: ` + widgetSettings["fontSize"] + `px;">` + widgetSettings["text"] + `</span>
-      `;
+      widgetElement.innerHTML =
+        '<span style="font-size: ' + widgetSettings["fontSize"] + 'px;">' + widgetSettings["text"] + '</span>'
+      ;
     }
   }
 

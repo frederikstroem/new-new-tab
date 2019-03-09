@@ -8,3 +8,4 @@ layout: default
 
 ## Table of Contents
 * [Quick Start](quick-start)
+* [Third-party Software Used](third-party-software-used)

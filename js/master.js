@@ -75,6 +75,7 @@ updateGridMenu();
 /*
   Key listeners.
 */
+// Keydown.
 window.addEventListener("keydown", keyDownEvent, false);
 
 function keyDownEvent (e) {
@@ -82,4 +83,25 @@ function keyDownEvent (e) {
     if (e.keyCode == "188" && e.ctrlKey) {
       toggleSettingsPopup();
     }
+}
+// DOMContentLoaded. Source https://developer.mozilla.org/en-US/docs/Web/Events/change (2019-03-09).
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[id="settingsChooseGrid"]').onchange=chooseGridChangeEventHandler;
+},false);
+
+function chooseGridChangeEventHandler(event) {
+  var gridWidgetList = document.getElementById("settingsGridWidgetList");
+  if (event.target.value != "") {
+    var settings = getSettings();
+
+    if (settings["grids"][event.target.value].length > 1) {
+      for (var i = 0; i < settings["grids"][event.target.value].length; i++) {
+        // TODO
+      }
+    } else {
+      gridWidgetList.innerHTML = "Empty grid chosen...";
+    }
+  } else {
+    gridWidgetList.innerHTML = "";
+  }
 }

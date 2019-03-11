@@ -33,7 +33,7 @@ function getSettings () {
 }
 
 function setSettings (settings) {
-  return localStorage.setItem(localStorageItem, JSON.stringify(settings));
+  localStorage.setItem(localStorageItem, JSON.stringify(settings));
 }
 
 /*
@@ -68,9 +68,31 @@ function updateGridMenu() {
     option.value = i + 1;
     settingsChooseGrid.add(option);
   }
+  // Hide grid options if no grid is selected.
+  var settingsGrid = document.getElementById("settingsGrid");
+  if (settingsChooseGrid.value == "") {
+    settingsGrid.style.display = "none"
+  } else {
+    settingsGrid.style.display = "block"
+  }
 }
 // Init run.
 updateGridMenu();
+
+// New grid.
+function newGrid() {
+  var settings = getSettings();
+  var grid = {
+    "position": "absolute",
+    "width": "300",
+    "left": "0",
+    "top": "0",
+    "widgets": []
+  }
+  settings["grids"].push(grid);
+  setSettings(settings);
+  updateGridMenu();
+}
 
 /*
   Key listeners.
@@ -105,3 +127,6 @@ function chooseGridChangeEventHandler(event) {
     gridWidgetList.innerHTML = "";
   }
 }
+
+// Click.
+document.getElementById("settingsAddGrid").addEventListener("click", newGrid);

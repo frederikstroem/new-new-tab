@@ -15,36 +15,42 @@
     <div id="settingsPopupOverlay"></div>
     <div id="settingsPopup">
         <h1><i class="fas fa-cog"></i> Settings</h1>
-        Choose a grid to edit:
-        <select id="settingsChooseGrid">
-          <option value="">Grid:</option>
-        </select>
-        <div id="settingsGrid">
-          Grid position:
-          <select id="settingsGridPosition">
-            <option value="absolute">Absolute</option>
-            <option value="fixed">Fixed</option>
-            <option value="sticky">Sticky</option>
+        <div id="settingsPopupMain">
+          Choose a grid to edit:
+          <select id="settingsChooseGrid">
+            <option value="">Grid:</option>
           </select>
+          <div id="settingsGrid">
+            Grid position:
+            <select id="settingsGridPosition">
+              <option value="absolute">Absolute</option>
+              <option value="fixed">Fixed</option>
+              <option value="sticky">Sticky</option>
+            </select>
+            <br>
+            Width (px):
+            <input id="settingsGridWidth" type="number" value="">
+            <br>
+            Top (px):
+            <input id="settingsGridTop" type="number" value="">
+            <br>
+            Left (px):
+            <input id="settingsGridLeft" type="number" value="">
+          </div>
           <br>
-          Width (px):
-          <input id="settingsGridWidth" type="number" value="">
-          <br>
-          Top (px):
-          <input id="settingsGridTop" type="number" value="">
-          <br>
-          Left (px):
-          <input id="settingsGridLeft" type="number" value="">
-        </div>
-        <br>
-        <div id="settingsGridWidgetList">
+          <div id="settingsGridWidgetList">
 
+          </div>
+          <br>
+          <div style="display: flex;">
+            <a href="javascript:void(0)" id="settingsAddGrid">Add new grid</a>
+            <a style="margin-left: 10px;" href="javascript:void(0)" id="settingsAddWidget">Add new widget</a>
+            <a style="align-self: flex-end;margin-left: auto;" href="https://frederikstroem.github.io/new-new-tab/" target="_blank" id="settingsAbout">About <i class="fas fa-question-circle"></i></a>
+          </div>
         </div>
-        <br>
-        <div style="display: flex;">
-          <a href="javascript:void(0)" id="settingsAddWidget">Add new widget</a>
-          <a style="margin-left: 10px;" href="javascript:void(0)" id="settingsAddGrid">Add new grid</a>
-          <a style="align-self: flex-end;margin-left: auto;" href="https://frederikstroem.github.io/new-new-tab/" target="_blank" id="settingsAbout">About <i class="fas fa-question-circle"></i></a>
+
+        <div id="settingsPopupNewWidget">
+          <a href="javascript:void(0)" id="settingsSaveWidget">Save new widget</a>
         </div>
     </div>
 

@@ -68,16 +68,36 @@ function updateGridMenu() {
     option.value = i + 1;
     settingsChooseGrid.add(option);
   }
-  // Hide grid options if no grid is selected.
-  var settingsGrid = document.getElementById("settingsGrid");
-  if (settingsChooseGrid.value == "") {
-    settingsGrid.style.display = "none"
-  } else {
-    settingsGrid.style.display = "block"
-  }
 }
 // Init run.
 updateGridMenu();
+
+// Choose grid change.
+function chooseGridChange() {
+  var gridWidgetList = document.getElementById("settingsGridWidgetList");
+  var settingsGrid = document.getElementById("settingsGrid");
+  var settingsAddWidget = document.getElementById("settingsAddWidget");
+  if (document.getElementById("settingsChooseGrid").value != "") {
+    var settings = getSettings();
+    chosenGrid = document.getElementById("settingsChooseGrid").value - 1;
+    settingsGrid.style.display = "block";
+    settingsAddWidget.style.display = "block";
+
+    if (settings["grids"][chosenGrid].length > 1) {
+      for (var i = 0; i < settings["grids"][chosenGrid].length; i++) {
+        // TODO
+      }
+    } else {
+      gridWidgetList.innerHTML = "Empty grid chosen...";
+    }
+  } else {
+    gridWidgetList.innerHTML = "";
+    settingsGrid.style.display = "none";
+    settingsAddWidget.style.display = "none";
+  }
+}
+// Init run.
+chooseGridChange();
 
 // New grid.
 function newGrid() {
@@ -92,6 +112,18 @@ function newGrid() {
   settings["grids"].push(grid);
   setSettings(settings);
   updateGridMenu();
+}
+
+// New widget popup.
+function newWidgetPopup() {
+  document.getElementById("settingsPopupMain").style.display = "none";
+  document.getElementById("settingsPopupNewWidget").style.display = "block";
+}
+
+// New widget save.
+function newWidgetSave() {
+  document.getElementById("settingsPopupMain").style.display = "block";
+  document.getElementById("settingsPopupNewWidget").style.display = "none";
 }
 
 /*
@@ -112,21 +144,10 @@ document.addEventListener('DOMContentLoaded',function() {
 },false);
 
 function chooseGridChangeEventHandler(event) {
-  var gridWidgetList = document.getElementById("settingsGridWidgetList");
-  if (event.target.value != "") {
-    var settings = getSettings();
-
-    if (settings["grids"][event.target.value].length > 1) {
-      for (var i = 0; i < settings["grids"][event.target.value].length; i++) {
-        // TODO
-      }
-    } else {
-      gridWidgetList.innerHTML = "Empty grid chosen...";
-    }
-  } else {
-    gridWidgetList.innerHTML = "";
-  }
+  chooseGridChange();
 }
 
 // Click.
 document.getElementById("settingsAddGrid").addEventListener("click", newGrid);
+document.getElementById("settingsAddWidget").addEventListener("click", newWidgetPopup);
+document.getElementById("settingsSaveWidget").addEventListener("click", newWidgetSave);

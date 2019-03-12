@@ -57,7 +57,7 @@ function toggleSettingsPopup () {
 function updateGridMenu() {
   var settings = getSettings();
   var settingsChooseGrid = document.getElementById("settingsChooseGrid");
-  // Clear grid menu (expect first child).
+  // Clear grid menu (except first child).
   while (settingsChooseGrid.childElementCount > 1) {
     settingsChooseGrid.removeChild(settingsChooseGrid.lastChild);
   }

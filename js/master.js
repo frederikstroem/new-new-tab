@@ -1,11 +1,19 @@
 /*
+  Using JSDoc style for code documentation.
+  https://github.com/jsdoc3/jsdoc
+*/
+
+/*
   Storage.
   Using Web Storage API (localStorage) and stringified JSON.
 */
 // Name of localStorage item.
 var localStorageItem = "settings";
 
-function makeLocalStorageItem () {
+/**
+ * Initializes browser local storage.
+*/
+function makeLocalStorageItem() {
   // If localStorageItem does not exist it will create the JSON layout.
   if (!localStorage.getItem(localStorageItem)) {
     var settings = {
@@ -21,9 +29,11 @@ function makeLocalStorageItem () {
   }
 }
 
-function getSettings () {
-  // Returns all settings from web storage.
-
+/**
+ * Returns all settings from local storage.
+ * @returns {object}
+ */
+function getSettings() {
   // Check if item exists, else create it.
   if (!localStorage.getItem(localStorageItem)) {
     makeLocalStorageItem();
@@ -32,6 +42,10 @@ function getSettings () {
   return JSON.parse(localStorage.getItem(localStorageItem));
 }
 
+/**
+ * Set local storage settings.
+ * @param {object} settings - New settings to be set in local storage.
+ */
 function setSettings (settings) {
   localStorage.setItem(localStorageItem, JSON.stringify(settings));
 }
@@ -39,9 +53,11 @@ function setSettings (settings) {
 /*
   Settings popup.
 */
-// Show and hide settings popup.
 settingsPanelHidden = true;
-function toggleSettingsPopup () {
+/**
+ * Show and hide settings popup.
+ */
+function toggleSettingsPopup() {
   if (settingsPanelHidden) {
     document.getElementById("settingsPopupOverlay").style.display = "block";
     document.getElementById("settingsPopup").style.display = "block";
@@ -53,7 +69,9 @@ function toggleSettingsPopup () {
   settingsPanelHidden = !settingsPanelHidden;
 }
 
-// Choose grid menu.
+/**
+ * Update grid menu with new enterties.
+ */
 function updateGridMenu() {
   var settings = getSettings();
   var settingsChooseGrid = document.getElementById("settingsChooseGrid");
@@ -72,7 +90,9 @@ function updateGridMenu() {
 // Init run.
 updateGridMenu();
 
-// Choose grid change.
+/**
+ * Update settings panel based on chosen grid in the dropdown menu.
+ */
 function chooseGridChange() {
   var gridWidgetList = document.getElementById("settingsGridWidgetList");
   var settingsGrid = document.getElementById("settingsGrid");
@@ -99,7 +119,9 @@ function chooseGridChange() {
 // Init run.
 chooseGridChange();
 
-// New grid.
+/**
+ * New grid.
+ */
 function newGrid() {
   var settings = getSettings();
   var grid = {
@@ -114,13 +136,29 @@ function newGrid() {
   updateGridMenu();
 }
 
-// New widget popup.
+/*
+ *New widget popup.
+ */
 function newWidgetPopup() {
   document.getElementById("settingsPopupMain").style.display = "none";
   document.getElementById("settingsPopupNewWidget").style.display = "block";
+
+  var widgetList = document.getElementById("settingsPopupNewWidgetList");
+  widgetList.innerHTML = "";
+
+  for (var i = 0; i < widgets.length; i++) {
+    var node = document.createElement("div");
+
+    var widget = widgets[i]();
+    node.innerHTML = widget.getName();
+
+    widgetList.appendChild(node);
+  }
 }
 
-// New widget save.
+/**
+ * New widget save.
+ */
 function newWidgetSave() {
   document.getElementById("settingsPopupMain").style.display = "block";
   document.getElementById("settingsPopupNewWidget").style.display = "none";
@@ -132,13 +170,20 @@ function newWidgetSave() {
 // Keydown.
 window.addEventListener("keydown", keyDownEvent, false);
 
-function keyDownEvent (e) {
+/**
+ * Key down event listener.
+ */
+function keyDownEvent(e) {
   /* Toggle settings popup with "ctrl + ,". */
     if (e.keyCode == "188" && e.ctrlKey) {
       toggleSettingsPopup();
     }
 }
-// DOMContentLoaded. Source https://developer.mozilla.org/en-US/docs/Web/Events/change (2019-03-09).
+
+/*
+  DOMContentLoaded event listener.
+  Source https://developer.mozilla.org/en-US/docs/Web/Events/change (2019-03-09).
+*/
 document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('select[id="settingsChooseGrid"]').onchange=chooseGridChangeEventHandler;
 },false);

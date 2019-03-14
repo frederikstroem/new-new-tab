@@ -50,11 +50,18 @@
         </div>
 
         <div id="settingsPopupNewWidget">
+          <div id="settingsPopupNewWidgetList">
+
+          </div>
           <a href="javascript:void(0)" id="settingsSaveWidget">Save new widget</a>
         </div>
     </div>
 
-    <script type="text/javascript" src="js/widgets.js"></script>
+    <script type="text/javascript">
+      // Refferences to all widget objects is stored in this array.
+      var widgets = [];
+    </script>
+    <script type="text/javascript" src="widgets.js"></script>
     <script type="text/javascript" src="js/master.js"></script>
   </body>
 </html>

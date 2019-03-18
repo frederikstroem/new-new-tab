@@ -3,7 +3,7 @@
 
   Static text widget.
 */
-function staticTextWidget() {
+widgets.push(new function() {
   this.getId = function() {
     return "staticText";
   }
@@ -46,8 +46,7 @@ function staticTextWidget() {
       '<span style="font-size: ' + widgetSettings["fontSize"] + 'px;">' + widgetSettings["text"] + '</span>'
     ;
   }
-}
-widgets.push(function() { staticTextWidget(); });
+})
 /*
   Static text widget.
 

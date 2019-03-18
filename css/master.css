@@ -76,6 +76,18 @@ body {
   display: none;
 }
 
+#settingsPopupNewWidgetList span {
+  display: block;
+}
+
+#settingsPopupNewWidgetList .header {
+  font-size: 22px;
+}
+
+#settingsPopupNewWidgetList div {
+  margin-bottom: 10px;
+}
+
 /*
   Grid classes.
 */

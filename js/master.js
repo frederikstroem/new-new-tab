@@ -148,9 +148,15 @@ function newWidgetPopup() {
 
   for (var i = 0; i < widgets.length; i++) {
     var node = document.createElement("div");
+    node.id = widgets[i].getId() + "Widget";
 
-    var widget = widgets[i]();
-    node.innerHTML = widget.getName();
+    var widget = widgets[i];
+    node.innerHTML =
+      '<span class="header">' + widget.getName() + '</span>' +
+      '<span class="author">' + widget.getAuthor() + '</span>' +
+      '<span class="description">' + widget.getDescription() + '</span>' +
+      '<a href="javascript:void(0)" class="saveNewWidget">Save new widget</a>'
+    ;
 
     widgetList.appendChild(node);
   }
@@ -159,6 +165,11 @@ function newWidgetPopup() {
 /**
  * New widget save.
  */
+function settingsQuitWithoutSaving() {
+  document.getElementById("settingsPopupMain").style.display = "block";
+  document.getElementById("settingsPopupNewWidget").style.display = "none";
+}
+
 function newWidgetSave() {
   document.getElementById("settingsPopupMain").style.display = "block";
   document.getElementById("settingsPopupNewWidget").style.display = "none";
@@ -195,4 +206,4 @@ function chooseGridChangeEventHandler(event) {
 // Click.
 document.getElementById("settingsAddGrid").addEventListener("click", newGrid);
 document.getElementById("settingsAddWidget").addEventListener("click", newWidgetPopup);
-document.getElementById("settingsSaveWidget").addEventListener("click", newWidgetSave);
+document.getElementById("settingsQuitWithoutSaving").addEventListener("click", settingsQuitWithoutSaving);

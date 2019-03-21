@@ -148,7 +148,7 @@ function newWidgetPopup() {
 
   for (var i = 0; i < widgets.length; i++) {
     var node = document.createElement("div");
-    node.id = widgets[i].getId() + "Widget";
+    node.id = "widget" + i;
 
     var widget = widgets[i];
     node.innerHTML =
@@ -170,7 +170,7 @@ function settingsQuitWithoutSaving() {
   document.getElementById("settingsPopupNewWidget").style.display = "none";
 }
 
-function newWidgetSave() {
+function newWidgetSave(widgetId, widgetSettingsElement) {
   document.getElementById("settingsPopupMain").style.display = "block";
   document.getElementById("settingsPopupNewWidget").style.display = "none";
 }
@@ -207,3 +207,11 @@ function chooseGridChangeEventHandler(event) {
 document.getElementById("settingsAddGrid").addEventListener("click", newGrid);
 document.getElementById("settingsAddWidget").addEventListener("click", newWidgetPopup);
 document.getElementById("settingsQuitWithoutSaving").addEventListener("click", settingsQuitWithoutSaving);
+
+document.querySelector("#settingsPopupNewWidgetList").addEventListener("click", settingsPopupNewWidgetListEvent, false);
+function settingsPopupNewWidgetListEvent(e) {
+  if (e.target.classList.contains('saveNewWidget')) {
+    newWidgetSave(e.target.parentElement.id, e.target.parentElement);
+  }
+  e.stopPropagation();
+}

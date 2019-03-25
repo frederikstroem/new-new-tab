@@ -32,7 +32,7 @@ widgets.push(new function() {
       {
         id:"fontSize",
         name:"Font size (px)",
-        description:"Font size in pixels.",
+        description:"Font size in pixels. Leave empty for default value.",
         type:"number",
         default:30,
         required:false

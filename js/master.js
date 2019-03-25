@@ -154,9 +154,39 @@ function newWidgetPopup() {
     node.innerHTML =
       '<span class="header">' + widget.getName() + '</span>' +
       '<span class="author">' + widget.getAuthor() + '</span>' +
-      '<span class="description">' + widget.getDescription() + '</span>' +
-      '<a href="javascript:void(0)" class="saveNewWidget">Save new widget</a>'
+      '<span class="description">' + widget.getDescription() + '</span>'
     ;
+    // Add settings for widget.
+    var widgetSettings = widget.getSettings();
+    for (var j = 0; j < widgetSettings.length; j++) {
+      node.innerHTML += '<span class="settingHeader">' + widgetSettings[j]["name"] + '</span>';
+      if (widgetSettings[j]["required"] == true) {
+        node.lastChild.innerHTML = "* " + node.lastChild.innerHTML;
+      }
+      if (widgetSettings[j]["type"] == "string") {
+        node.innerHTML += '<input class="setting' + j + '" type="text">';
+        if ("default" in widgetSettings[j]) {
+          node.lastChild.placeholder = widgetSettings[j]["default"]
+        }
+      } else if (widgetSettings[j]["type"] == "number") {
+        node.innerHTML += '<input class="setting' + j + '" type="number">';
+        if ("default" in widgetSettings[j]) {
+          node.lastChild.placeholder = widgetSettings[j]["default"]
+        }
+      } else if (widgetSettings[j]["type"] == "boolean") {
+        node.innerHTML += '<input class="setting' + j + '" type="checkbox">';
+        if ("default" in widgetSettings[j]) {
+          if (widgetSettings[j]["default"] == true) {
+            node.lastChild.checked = true;
+          } else {
+            node.lastChild.checked = false;
+          }
+        }
+      }
+      node.innerHTML += '<span class="settingDescription">' + widgetSettings[j]["description"] + '</span>';
+    }
+
+    node.innerHTML += '<a href="javascript:void(0)" class="saveNewWidget">Save new widget</a>';
 
     widgetList.appendChild(node);
   }
@@ -185,10 +215,14 @@ window.addEventListener("keydown", keyDownEvent, false);
  * Key down event listener.
  */
 function keyDownEvent(e) {
-  /* Toggle settings popup with "ctrl + ,". */
+  /* Toggle settings popup with "Ctrl + ,". */
     if (e.keyCode == "188" && e.ctrlKey) {
       toggleSettingsPopup();
+    } else if (e.keyCode == "27" && document.getElementById("settingsPopup").style.display == "block") {
+      /* Close settings popup with "Esc" if it is open. */
+      toggleSettingsPopup();
     }
+
 }
 
 /*

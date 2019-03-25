@@ -81,11 +81,44 @@ body {
 }
 
 #settingsPopupNewWidgetList .header {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 #settingsPopupNewWidgetList div {
   margin-bottom: 10px;
+}
+
+#settingsPopupNewWidgetList div:last-child {
+  margin-bottom: 25px;
+}
+
+#settingsPopupNewWidgetList div .header {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+#settingsPopupNewWidgetList div .author {
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #d0d0d0;
+  font-size: 14px
+}
+
+#settingsPopupNewWidgetList div .description {
+  margin-bottom: 15px
+}
+
+#settingsPopupNewWidgetList div .settingHeader {
+  font-weight: bold;
+  margin-bottom: 3px
+}
+
+#settingsPopupNewWidgetList div input {
+  margin-bottom: 3px
+}
+
+#settingsPopupNewWidgetList div .settingDescription {
+  margin-bottom: 10px
 }
 
 /*

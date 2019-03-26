@@ -96,11 +96,13 @@ updateGridMenu();
 function chooseGridChange() {
   var gridWidgetList = document.getElementById("settingsGridWidgetList");
   var settingsGrid = document.getElementById("settingsGrid");
+  var settingsRemoveGrid = document.getElementById("settingsRemoveGrid");
   var settingsAddWidget = document.getElementById("settingsAddWidget");
   if (document.getElementById("settingsChooseGrid").value != "") {
     var settings = getSettings();
     chosenGrid = document.getElementById("settingsChooseGrid").value - 1;
     settingsGrid.style.display = "block";
+    settingsRemoveGrid.style.display = "block";
     settingsAddWidget.style.display = "block";
 
     if (settings["grids"][chosenGrid].length > 1) {
@@ -113,6 +115,7 @@ function chooseGridChange() {
   } else {
     gridWidgetList.innerHTML = "";
     settingsGrid.style.display = "none";
+    settingsRemoveGrid.style.display = "none";
     settingsAddWidget.style.display = "none";
   }
 }
@@ -136,7 +139,14 @@ function newGrid() {
   updateGridMenu();
 }
 
-/*
+/**
+ * Remove grid.
+ */
+function removeGrid() {
+  // TODO
+}
+
+/**
  *New widget popup.
  */
 function newWidgetPopup() {

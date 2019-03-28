@@ -72,6 +72,15 @@ body {
   max-height: 100%;
 }
 
+#settingsChooseGrid, #settingsGrid, #settingsGrid input:not(:last-child), #settingsGrid select:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+#settingsGridWidgetList {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 #settingsPopupNewWidget {
   display: none;
 }

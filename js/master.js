@@ -143,7 +143,13 @@ function newGrid() {
  * Remove grid.
  */
 function removeGrid() {
-  // TODO
+  var settings = getSettings();
+  var settingsChooseGrid = document.getElementById("settingsChooseGrid").value;
+  if (settingsChooseGrid != "") {
+    settings["grids"].splice(settingsChooseGrid, 1);
+    setSettings(settings);
+    updateGridMenu();
+  }
 }
 
 /**
@@ -249,6 +255,7 @@ function chooseGridChangeEventHandler(event) {
 
 // Click.
 document.getElementById("settingsAddGrid").addEventListener("click", newGrid);
+document.getElementById("settingsRemoveGrid").addEventListener("click", removeGrid);
 document.getElementById("settingsAddWidget").addEventListener("click", newWidgetPopup);
 document.getElementById("settingsQuitWithoutSaving").addEventListener("click", settingsQuitWithoutSaving);
 

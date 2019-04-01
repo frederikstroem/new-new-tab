@@ -209,14 +209,38 @@ function newWidgetPopup() {
 }
 
 /**
- * New widget save.
+ * Quit without saving.
  */
 function settingsQuitWithoutSaving() {
   document.getElementById("settingsPopupMain").style.display = "block";
   document.getElementById("settingsPopupNewWidget").style.display = "none";
 }
 
+/**
+ * New widget save.
+ * @param {string} widgetId - Widget id on the format "widget0".
+ * @param {object} widgetSettingsElement - Settings DOM element.
+ */
 function newWidgetSave(widgetId, widgetSettingsElement) {
+  var settings = getSettings();
+
+  widgetId = widgetId.replace("widget", "");
+  var widgetEntry = widgets[widgetId];
+  var widgetInputs = widgetSettingsElement.querySelectorAll("input");
+
+  for (var i = 0; i < widgets[widgetId].getSettings().length; i++) {
+    if (widgetInputs[i].type == "text") {
+      
+    } else if (widgetInputs[i].type == "number") {
+
+    } else if (widgetInputs[i].type == "checkbox") {
+
+    }
+  }
+
+  // TODO: Update grids.
+
+  // Hide new widget tab.
   document.getElementById("settingsPopupMain").style.display = "block";
   document.getElementById("settingsPopupNewWidget").style.display = "none";
 }

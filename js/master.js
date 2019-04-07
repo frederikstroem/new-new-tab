@@ -46,9 +46,37 @@ function getSettings() {
  * Set local storage settings.
  * @param {object} settings - New settings to be set in local storage.
  */
-function setSettings (settings) {
+function setSettings(settings) {
   localStorage.setItem(localStorageItem, JSON.stringify(settings));
 }
+
+/**
+ * Update grid and widgets.
+ */
+function update() {
+  var settings = getSettings();
+
+  var main = document.getElementById("main");
+
+  // Grids.
+  for (var i = 0; i < settings["grids"].length; i++) {
+    var gridElement = document.createElement("div");
+    gridElement.classList.add("grid");
+    // Widgets
+    for (var j = 0; j < settings["grids"][i]["widgets"].length; j++) {
+      var widgetElement = document.createElement("div");
+      gridElement.classList.add("widget");
+      for (var k = 0; k < widgets.length; k++) {
+        if (widgets[k].getId() == settings["grids"][i]["widgets"][j]["widgetId"]) {
+          widgets[k].displayWidget(widgetElement, settings["grids"][i]["widgets"][j]["settings"]);
+          break
+        }
+      }
+    }
+  }
+}
+// Init run.
+update();
 
 /*
   Settings popup.
@@ -137,6 +165,7 @@ function newGrid() {
   settings["grids"].push(grid);
   setSettings(settings);
   updateGridMenu();
+  chooseGridChange();
 }
 
 /**
@@ -146,9 +175,12 @@ function removeGrid() {
   var settings = getSettings();
   var settingsChooseGrid = document.getElementById("settingsChooseGrid").value;
   if (settingsChooseGrid != "") {
-    settings["grids"].splice(settingsChooseGrid, 1);
+    settings["grids"].splice(settingsChooseGrid - 1, 1);
     setSettings(settings);
     updateGridMenu();
+    if (settingsChooseGrid == "") {
+      chooseGridChange();
+    }
   }
 }
 
@@ -227,16 +259,26 @@ function newWidgetSave(widgetId, widgetSettingsElement) {
   widgetId = widgetId.replace("widget", "");
   var widgetEntry = widgets[widgetId];
   var widgetInputs = widgetSettingsElement.querySelectorAll("input");
+  var settingsChooseGrid = document.getElementById("settingsChooseGrid").value - 1;
+
+  var newWidget = {settings: {}}
+
+  newWidget["widgetId"] = widgets[widgetId].getId();
 
   for (var i = 0; i < widgets[widgetId].getSettings().length; i++) {
-    if (widgetInputs[i].type == "text") {
-      
-    } else if (widgetInputs[i].type == "number") {
-
+    if (widgetInputs[i].type == "text" || widgetInputs[i].type == "number") {
+      if (widgetInputs[i].value == "" && widgets[widgetId].getSettings()[i].hasOwnProperty("default")) {
+        newWidget["settings"][widgets[widgetId].getSettings()[i]["id"]] = widgets[widgetId].getSettings()[i]["default"]
+      } else {
+        newWidget["settings"][widgets[widgetId].getSettings()[i]["id"]] = widgetInputs[i].value;
+      }
     } else if (widgetInputs[i].type == "checkbox") {
-
+      newWidget["settings"][widgets[widgetId].getSettings()[i]["id"]] = widgetInputs[i].checked;
     }
   }
+
+  settings["grids"][settingsChooseGrid]["widgets"].push(newWidget);
+  setSettings(settings);
 
   // TODO: Update grids.
 
